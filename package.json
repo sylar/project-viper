@@ -5,6 +5,10 @@
   "main": "index.js",
   "author": "Andrei Constantinescu <andrei@constantinescu.io>",
   "license": "MIT",
+  "scripts": {
+    "start": "webpack-dashboard -- node server.js",
+    "build": "webpack --progress --config webpack.config.prod.js"
+  },
   "devDependencies": {
     "babel-core": "^6.18.2",
     "babel-loader": "^6.2.7",
@@ -23,7 +27,13 @@
     "webpack-dev-server": "^2.1.0-beta.10"
   },
   "dependencies": {
+    "babel-eslint": "^7.1.0",
+    "babel-runtime": "^6.18.0",
+    "lodash": "^4.16.6",
     "react": "^15.4.0-rc.4",
     "react-dom": "^15.4.0-rc.4"
+  },
+  "standard": {
+    "parser": "babel-eslint"
   }
 }
