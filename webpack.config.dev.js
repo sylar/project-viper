@@ -36,12 +36,7 @@ module.exports = {
               localIdentName: '[name]-[local]'
             }
           },
-          {
-            loader: 'postcss',
-            options: {
-              sourceMap: 'inline'
-            }
-          }
+          'postcss'
         ]
       },
       {

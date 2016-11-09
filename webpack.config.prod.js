@@ -47,12 +47,10 @@ module.exports = {
   },
   plugins: [
     new LodashModuleReplacementPlugin(),
-    new webpack.DefinePlugin({
-      'process.env': { NODE_ENV: 'production' }
-    }),
     new webpack.LoaderOptionsPlugin({
       minimize: true,
-      debug: false
+      debug: false,
+      comments: false
     }),
     new webpack.optimize.DedupePlugin(),
     new webpack.optimize.CommonsChunkPlugin({
@@ -66,13 +64,11 @@ module.exports = {
         warnings: false
       },
       mangle: true,
-      sourceMap: false,
       beautify: false,
-      debug: false
     }),
     new HtmlWebpackPlugin({
       title: 'My App',
-      template: 'assets/template.html'
+      template: 'index.html'
     }),
     new webpack.LoaderOptionsPlugin({
       test: /\.css$/,
