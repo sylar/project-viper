@@ -34,8 +34,11 @@
     "babel-eslint": "^7.1.0",
     "babel-runtime": "^6.18.0",
     "lodash": "^4.16.6",
+    "postcss-smart-import": "^0.5.1",
+    "precss": "^1.4.0",
     "react": "^15.4.0-rc.4",
-    "react-dom": "^15.4.0-rc.4"
+    "react-dom": "^15.4.0-rc.4",
+    "tachyons": "^4.5.5"
   },
   "standard": {
     "parser": "babel-eslint"

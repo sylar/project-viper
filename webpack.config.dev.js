@@ -3,6 +3,8 @@ const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const DashboardPlugin = require('webpack-dashboard/plugin')
 const LodashModuleReplacementPlugin = require('lodash-webpack-plugin')
+const postcssSmartImport = require('postcss-smart-import')
+const precss = require('precss');
 const autoprefixer = require('autoprefixer')
 
 const nodeEnv = process.env.NODE_ENV || 'development'
@@ -75,6 +77,8 @@ module.exports = {
       options: {
         debug: true,
         postcss: [
+          postcssSmartImport(),
+          precss(),
           autoprefixer({
             browsers: [
               'last 3 version',
