@@ -2,6 +2,7 @@ const webpack = require('webpack')
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const LodashModuleReplacementPlugin = require('lodash-webpack-plugin')
+const autoprefixer = require('autoprefixer')
 
 module.exports = {
   context: path.join(__dirname, './src'),
@@ -17,9 +18,13 @@ module.exports = {
     loaders: [
       {
         test: /\.css$/,
-        loaders: [
-          'style',
-           { loader: 'css', options: { modules: true } }
+        use: [
+          'style-loader',
+          {
+            loader: 'css-loader',
+            options: { importLoaders: 1, modules: true }
+          },
+          'postcss-loader'
         ]
       },
       {
@@ -68,6 +73,20 @@ module.exports = {
     new HtmlWebpackPlugin({
       title: 'My App',
       template: 'assets/template.html'
+    }),
+    new webpack.LoaderOptionsPlugin({
+      test: /\.css$/,
+      debug: false,
+      options: {
+        postcss: [
+          autoprefixer({
+            browsers: [
+              'last 3 version',
+              'ie >= 10'
+            ]
+          })
+        ]
+      }
     })
   ]
 }

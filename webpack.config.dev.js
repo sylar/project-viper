@@ -3,11 +3,12 @@ const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const DashboardPlugin = require('webpack-dashboard/plugin')
 const LodashModuleReplacementPlugin = require('lodash-webpack-plugin')
+const autoprefixer = require('autoprefixer')
 
 const nodeEnv = process.env.NODE_ENV || 'development'
 
 module.exports = {
-  devtool: 'cheap-module-eval-source-map',
+  devtool: 'source-map',
   context: path.join(__dirname, './src'),
   entry: [
     'react-hot-loader/patch',
@@ -24,9 +25,23 @@ module.exports = {
     loaders: [
       {
         test: /\.css$/,
-        loaders: [
+        use: [
           'style',
-          'css'
+          {
+            loader: 'css-loader',
+            options: {
+              importLoaders: 1,
+              modules: true,
+              sourceMaps: 'inline',
+              localIdentName: '[name]-[local]'
+            }
+          },
+          {
+            loader: 'postcss',
+            options: {
+              sourceMap: 'inline'
+            }
+          }
         ]
       },
       {
@@ -58,6 +73,20 @@ module.exports = {
     new webpack.NamedModulesPlugin(),
     new DashboardPlugin(),
     new webpack.HotModuleReplacementPlugin(),
-    new LodashModuleReplacementPlugin()
+    new LodashModuleReplacementPlugin(),
+    new webpack.LoaderOptionsPlugin({
+      test: /\.css$/,
+      options: {
+        debug: true,
+        postcss: [
+          autoprefixer({
+            browsers: [
+              'last 3 version',
+              'ie >= 10'
+            ]
+          })
+        ]
+      }
+    })
   ]
 }
