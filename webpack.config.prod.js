@@ -19,12 +19,12 @@ module.exports = {
       {
         test: /\.css$/,
         use: [
-          'style-loader',
+          'style',
           {
-            loader: 'css-loader',
+            loader: 'css',
             options: { importLoaders: 1, modules: true }
           },
-          'postcss-loader'
+          'postcss'
         ]
       },
       {
@@ -64,11 +64,12 @@ module.exports = {
         warnings: false
       },
       mangle: true,
-      beautify: false,
+      beautify: false
     }),
     new HtmlWebpackPlugin({
-      title: 'My App',
-      template: 'index.html'
+      title: 'Prod App',
+      template: 'assets/template.html',
+      filename: 'index.html'
     }),
     new webpack.LoaderOptionsPlugin({
       test: /\.css$/,

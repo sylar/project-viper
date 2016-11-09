@@ -62,8 +62,9 @@ module.exports = {
       'process.env': { NODE_ENV: JSON.stringify(nodeEnv) }
     }),
     new HtmlWebpackPlugin({
-      title: 'Test App',
-      template: 'index.html'
+      title: 'Dev App',
+      template: 'assets/template.html',
+      filename: 'index.html'
     }),
     new webpack.NamedModulesPlugin(),
     new DashboardPlugin(),
