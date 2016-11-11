@@ -4,23 +4,26 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const DashboardPlugin = require('webpack-dashboard/plugin')
 const LodashModuleReplacementPlugin = require('lodash-webpack-plugin')
 const postcssSmartImport = require('postcss-smart-import')
-const precss = require('precss');
+const precss = require('precss')
 const autoprefixer = require('autoprefixer')
+const CopyWebpackPlugin = require('copy-webpack-plugin')
 
 const nodeEnv = process.env.NODE_ENV || 'development'
 
 module.exports = {
   devtool: 'source-map',
   context: path.join(__dirname, './src'),
-  entry: [
-    'react-hot-loader/patch',
-    'webpack-dev-server/client?http://localhost:3000',
-    'webpack/hot/only-dev-server',
-    './index.js'
-  ],
+  entry: {
+    app: [
+      'react-hot-loader/patch',
+      'webpack-dev-server/client?http://localhost:3000',
+      'webpack/hot/only-dev-server',
+      './index.js'
+    ]
+  },
   output: {
     path: path.join(__dirname, './static'),
-    filename: 'bundle.js',
+    filename: '[name].js',
     devtoolModuleFilenameTemplate: '/[absolute-resource-path]'
   },
   module: {
@@ -60,6 +63,7 @@ module.exports = {
     ]
   },
   plugins: [
+    new CopyWebpackPlugin([{ from: require.resolve('tachyons/css/tachyons.css') }]),
     new webpack.DefinePlugin({
       'process.env': { NODE_ENV: JSON.stringify(nodeEnv) }
     }),
