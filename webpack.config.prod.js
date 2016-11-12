@@ -10,45 +10,30 @@ const ExtractTextPlugin = require("extract-text-webpack-plugin")
 module.exports = {
   context: path.join(__dirname, './src'),
   entry: {
-    js: './index.js',
+    main: './index.js',
     vendor: ['react']
   },
   output: {
     path: path.join(__dirname, './static'),
-    filename: 'bundle.js'
+    filename: '[name].js'
   },
   module: {
     loaders: [
-      // {
-      //     test: /\.sss$/,
-      //     loader: ExtractTextPlugin.extract({
-      //       fallbackLoader: 'style-loader',
-      //       loader: ['css', 'postcss']
-      //     })
-      //   },
       {
         test: /\.css$/,
-        // loader: ExtractTextPlugin.extract({ loader: 'css?modules&importLoaders=1&localIdentName=[path]___[name]__[local]!postcss', fallbackLoader: 'style-loader' })
-
-        // ExtractTextPlugin.extract({
-        //   fallbackLoader: "style-loader",
-        //   loader: "css-loader"
-
-
-          // {
-          //   loader: 'css',
-          //   options: { importLoaders: 1, modules: true }
-          // },
-
-        // })
-        use: [
-          'style',
-          {
-            loader: 'css',
-            options: { importLoaders: 1, modules: true }
-          },
-          'postcss'
-        ]
+        loader: ExtractTextPlugin.extract({
+          fallbackLoader: 'style',
+          loader: [
+            {
+                loader: 'css',
+                options: {
+                  importLoaders: 1,
+                  modules: true
+                }
+              },
+              'postcss'
+          ]
+        })
       },
       {
         test: /\.(js|jsx)$/,
@@ -69,14 +54,20 @@ module.exports = {
     ]
   },
   plugins: [
-    new CopyWebpackPlugin([{ from: require.resolve('tachyons/css/tachyons.css') }]),
+    new CopyWebpackPlugin([{ from: require.resolve('tachyons/css/tachyons.min.css'), to: 'tachyons.css'}]),
+    new ExtractTextPlugin({
+      filename: "style.css",
+      disable: false,
+      allChunks: true
+    }),
     new LodashModuleReplacementPlugin(),
     new webpack.LoaderOptionsPlugin({
       minimize: true,
       debug: false,
       comments: false
     }),
-    // new webpack.optimize.DedupePlugin(),
+
+    new webpack.optimize.DedupePlugin(),
     new webpack.optimize.CommonsChunkPlugin({
       name: 'vendor',
       minChunks: Infinity,
@@ -106,7 +97,13 @@ module.exports = {
            removeEmptyAttributes: true,
            minifyURLs: true,
            useShortDoctype: true
-         }
+         },
+      chunks: {
+        head: {
+          css: 'tachyons.css',
+
+        }
+      }
     }),
     new webpack.LoaderOptionsPlugin({
       test: /\.css$/,
@@ -122,9 +119,5 @@ module.exports = {
         ]
       }
     })
-    // new ExtractTextPlugin({
-    //     filename: 'styles.css',
-    //     allChunks: true
-    //   })
   ]
 }
