@@ -1,18 +1,9 @@
 .title {
-  color: salmon;
-  display: flex;
-}
-
-.subtitle {
-  font-size: 22px
+  color: red;
 }
 
 @media (max-width: 730px) {
   .title {
     color: blue
   }
-}
-
-.caca {
-  color: brown;
 }

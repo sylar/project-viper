@@ -11,7 +11,7 @@ module.exports = {
   context: path.join(__dirname, './src'),
   entry: {
     main: './index.js',
-    vendor: ['react']
+    vendor: ['react', 'classnames']
   },
   output: {
     path: path.join(__dirname, './static'),

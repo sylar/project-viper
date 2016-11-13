@@ -3,8 +3,6 @@ const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const DashboardPlugin = require('webpack-dashboard/plugin')
 const LodashModuleReplacementPlugin = require('lodash-webpack-plugin')
-const postcssSmartImport = require('postcss-smart-import')
-const precss = require('precss')
 const autoprefixer = require('autoprefixer')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 
@@ -38,7 +36,7 @@ module.exports = {
               importLoaders: 1,
               modules: true,
               sourceMaps: 'inline',
-              localIdentName: '[name]-[local]'
+              localIdentName: '[local]__[hash:base64:3]'
             }
           },
           'postcss'
@@ -63,7 +61,7 @@ module.exports = {
     ]
   },
   plugins: [
-    new CopyWebpackPlugin([{ from: require.resolve('tachyons/css/tachyons.css') }]),
+    new CopyWebpackPlugin([{ from: require.resolve('tachyons/css/tachyons.min.css'), to: 'tachyons.css'}]),
     new webpack.DefinePlugin({
       'process.env': { NODE_ENV: JSON.stringify(nodeEnv) }
     }),
@@ -75,22 +73,6 @@ module.exports = {
     new webpack.NamedModulesPlugin(),
     new DashboardPlugin(),
     new webpack.HotModuleReplacementPlugin(),
-    new LodashModuleReplacementPlugin(),
-    new webpack.LoaderOptionsPlugin({
-      test: /\.css$/,
-      options: {
-        debug: true,
-        postcss: [
-          postcssSmartImport(),
-          precss(),
-          autoprefixer({
-            browsers: [
-              'last 3 version',
-              'ie >= 10'
-            ]
-          })
-        ]
-      }
-    })
+    new LodashModuleReplacementPlugin()
   ]
 }

@@ -1,18 +1,17 @@
 import React, { Component } from 'react'
-import { title } from './style.css'
+import classes from 'classnames/bind'
+import styles from './style.css'
+
+const cx = classes.bind(styles)
 
 export default class RandomNumber extends Component {
-  state = {
-    number: Math.random().toFixed(2)
-  }
-
   render () {
-    const classN = `${title} mw5 mw7-ns center bg-light-gray pa3 ph5-ns black-70`
-    return (<div>
-<h1 className = {classN}>        <div className = 'tc-l'>
-          {this.state.number}
-        </div>
-      </h1>
+    const style = cx(`${styles.title} mw5 mw7-ns center bg-light-gray pa3 ph5-ns black-70 flex w-100 items-center content-center flex-wrap`)
+    return (<div className={style}>
+          <h1 className='black-60 flex-auto tc-l'>A random number</h1>
+          <h1 className='flex-auto tc-l'>
+            {this.props.number}
+          </h1>
       </div>
     )
   }
