@@ -1,15 +1,23 @@
 import React, { Component } from 'react'
 import RandomNumber from '../RandomNumber'
-import RandomNumber2 from '../RandomNumber2'
+import RoundImage from '../RoundImage'
+import WelcomeNote from '../WelcomeNote'
+import style from './style.css'
+import classnames from 'classnames'
+
+const classes = classnames.bind(style)
+// import src from '../../assets/images/crossword.png'
 
 export default class App extends Component {
   render () {
+    const cx = classes(`vh-100 dt w-100 ${style.image}`)
     return (
-      <div className='bg-white'>
-        <h1 className='tc-l'>Hello There!</h1>
-        <h3 className='black-50 tc-l'>This is demo of using webpack2, css module, tachyons and many more. Check it out!</h3>
-        <RandomNumber number={Math.random().toFixed(3)}/>
-        <RandomNumber2 />
+      <div className={cx}>
+        <div className='dtc v-mid tc white ph3 ph4-l'>
+          <RoundImage />
+          <WelcomeNote />
+          <RandomNumber number={Math.random().toFixed(3)}/>
+        </div>
       </div>
     )
   }
