@@ -20,20 +20,12 @@ module.exports = {
   module: {
     loaders: [
       {
+        test: /\.html$/,
+        use: 'html'
+      },
+      {
         test: /\.css$/,
-        loader: ExtractTextPlugin.extract({
-          fallbackLoader: 'style',
-          loader: [
-            {
-                loader: 'css',
-                options: {
-                  importLoaders: 1,
-                  modules: true
-                }
-              },
-              'postcss'
-          ]
-        })
+        loader: ExtractTextPlugin.extract({loader:"css-loader?minimize&discardUnused&modules&importLoaders=1&localIdentName=[hash:base64:3]'!postcss"}),
       },
       {
         test: /\.(js|jsx)$/,
@@ -57,67 +49,38 @@ module.exports = {
     new CopyWebpackPlugin([{ from: require.resolve('tachyons/css/tachyons.min.css'), to: 'tachyons.css'}]),
     new ExtractTextPlugin({
       filename: "style.css",
-      disable: false,
       allChunks: true
     }),
-    new LodashModuleReplacementPlugin(),
-    new webpack.LoaderOptionsPlugin({
-      minimize: true,
-      debug: false,
-      comments: false
+    new HtmlWebpackPlugin({
+      title: 'Prod App',
+      template: './assets/template.html',
+      minify:
+      {
+        useShortDoctype: true,
+        removeAttributeQuotes: true,
+        removeComments: true,
+        removeEmptyAttributes: true,
+        minifyURLs: true
+      }
     }),
-
-    new webpack.optimize.DedupePlugin(),
     new webpack.optimize.CommonsChunkPlugin({
       name: 'vendor',
       minChunks: Infinity,
       filename: 'vendor.bundle.js',
     }),
+    new LodashModuleReplacementPlugin(),
+    new webpack.optimize.DedupePlugin(),
     new webpack.optimize.UglifyJsPlugin({
       minimize: true,
       compressor: {
         warnings: false
       },
       output: {
-       comments: false
+        comments: false
       },
       mangle: true,
       beautify: false,
       sourceMap: false
-
     }),
-    new HtmlWebpackPlugin({
-      title: 'Prod App',
-      template: './assets/template.html',
-      minify:
-         {
-           useShortDoctype: true,
-           removeAttributeQuotes: true,
-           removeComments: true,
-           removeEmptyAttributes: true,
-           minifyURLs: true,
-           useShortDoctype: true
-         },
-      chunks: {
-        head: {
-          css: 'tachyons.css',
-
-        }
-      }
-    }),
-    new webpack.LoaderOptionsPlugin({
-      test: /\.css$/,
-      debug: false,
-      options: {
-        postcss: [
-          autoprefixer({
-            browsers: [
-              'last 3 version',
-              'ie >= 10'
-            ]
-          })
-        ]
-      }
-    })
   ]
 }
