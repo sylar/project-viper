@@ -7,7 +7,7 @@
   "license": "MIT",
   "scripts": {
     "start": "webpack-dashboard -- node server.js",
-    "build": "webpack --config webpack.config.prod.js",
+    "build": "webpack -p --config webpack.config.prod.js",
     "stats": "webpack --config webpack.config.prod.js --profile --json > stats.json"
   },
   "devDependencies": {
