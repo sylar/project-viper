@@ -15,7 +15,7 @@ module.exports = {
   },
   output: {
     path: path.join(__dirname, './static'),
-    filename: '[name].js'
+    filename: 'js/[name].js'
   },
   module: {
     loaders: [
@@ -33,10 +33,33 @@ module.exports = {
         loader: 'babel',
         query: {
           presets: [['es2015', { 'modules': false }], 'stage-0', 'react'],
-          plugins: ['lodash']
+          plugins: ['lodash', 'transform-react-jsx-img-import']
         }
+      },
+      {
+        test: /.*\.(gif|png|jpe?g|svg)$/i,
+        loaders: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: '[path][name].[ext]'
+            }
+          },
+          {
+            loader: 'image-webpack',
+            options: {
+              progressive: true,
+              optimizationLevel: 7,
+              interlaced: false,
+              pngquant: {
+                quality: '65-90',
+                speed: 4
+              }
+            }
+          }
+        ]
       }
-    ]
+    ],
   },
   resolve: {
     extensions: ['.js', '.jsx', '.json'],
@@ -46,9 +69,9 @@ module.exports = {
     ]
   },
   plugins: [
-    new CopyWebpackPlugin([{ from: require.resolve('tachyons/css/tachyons.min.css'), to: 'tachyons.css'}]),
+    new CopyWebpackPlugin([{ from: require.resolve('tachyons/css/tachyons.min.css'), to: 'css/tachyons.css'}]),
     new ExtractTextPlugin({
-      filename: "style.css",
+      filename: "css/style.css",
       allChunks: true
     }),
     new HtmlWebpackPlugin({
@@ -66,7 +89,7 @@ module.exports = {
     new webpack.optimize.CommonsChunkPlugin({
       name: 'vendor',
       minChunks: Infinity,
-      filename: 'vendor.bundle.js',
+      filename: 'js/vendor.bundle.js',
     }),
     new LodashModuleReplacementPlugin(),
     new webpack.optimize.DedupePlugin(),

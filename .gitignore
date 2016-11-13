@@ -3,3 +3,4 @@ yarn.lock
 static
 stats.json
 static
+.DS_Store

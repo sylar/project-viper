@@ -21,7 +21,7 @@ module.exports = {
   },
   output: {
     path: path.join(__dirname, './static'),
-    filename: '[name].js',
+    filename: 'js/[name].js',
     devtoolModuleFilenameTemplate: '/[absolute-resource-path]'
   },
   module: {
@@ -48,8 +48,12 @@ module.exports = {
         loader: 'babel',
         query: {
           presets: [['es2015', { 'modules': false }], 'stage-0', 'react'],
-          plugins: ['react-hot-loader/babel', 'lodash']
+          plugins: ['react-hot-loader/babel', 'lodash', 'transform-react-jsx-img-import']
         }
+      },
+      {
+        test: /.*\.(gif|png|jpe?g|svg)$/i,
+        loader: 'file-loader'
       }
     ]
   },
@@ -61,7 +65,7 @@ module.exports = {
     ]
   },
   plugins: [
-    new CopyWebpackPlugin([{ from: require.resolve('tachyons/css/tachyons.min.css'), to: 'tachyons.css'}]),
+    new CopyWebpackPlugin([{ from: require.resolve('tachyons/css/tachyons.min.css'), to: 'css/tachyons.css'}]),
     new webpack.DefinePlugin({
       'process.env': { NODE_ENV: JSON.stringify(nodeEnv) }
     }),
