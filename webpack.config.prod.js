@@ -21,16 +21,19 @@ module.exports = {
     loaders: [
       {
         test: /\.html$/,
-        use: 'html'
+        use: 'html-loader'
       },
       {
         test: /\.css$/,
-        loader: ExtractTextPlugin.extract({loader:"css-loader?minimize&discardUnused&modules&importLoaders=1&localIdentName=[hash:base64:3]'!postcss"}),
+        loader: ExtractTextPlugin.extract({
+          fallbackLoader: 'style-loader',
+          loader: 'css-loader?minimize&discardUnused&modules&importLoaders=1&localIdentName=[hash:base64:3]!postcss-loader',
+          publicPath: '/'}),
       },
       {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
-        loader: 'babel',
+        loader: 'babel-loader',
         query: {
           presets: [['es2015', { 'modules': false }], 'stage-0', 'react'],
           plugins: ['lodash', 'transform-react-jsx-img-import']
@@ -46,7 +49,7 @@ module.exports = {
             }
           },
           {
-            loader: 'image-webpack',
+            loader: 'image-webpack-loader',
             options: {
               progressive: true,
               optimizationLevel: 7,

@@ -29,7 +29,7 @@ module.exports = {
       {
         test: /\.css$/,
         use: [
-          'style',
+          'style-loader',
           {
             loader: 'css-loader',
             options: {
@@ -39,13 +39,13 @@ module.exports = {
               localIdentName: '[local]__[hash:base64:3]'
             }
           },
-          'postcss'
+          'postcss-loader'
         ]
       },
       {
         test: /\.(jsx?)$/,
         exclude: /node_modules/,
-        loader: 'babel',
+        loader: 'babel-loader',
         query: {
           presets: [['es2015', { 'modules': false }], 'stage-0', 'react'],
           plugins: ['react-hot-loader/babel', 'lodash', 'transform-react-jsx-img-import']
