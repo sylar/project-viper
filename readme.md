@@ -105,6 +105,8 @@ If you find a better way to do something or simply want to add a new feature, ju
 - [ ] Testing.
 - [ ] SSR.
 - [ ] Improve Readme.
+- [ ] Add `serve` for production build testing.
+- [ ] Create NPM package for auto-scaffold.
 
 ## License.
 
