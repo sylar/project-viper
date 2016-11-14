@@ -106,7 +106,10 @@ module.exports = {
       },
       mangle: true,
       beautify: false,
-      sourceMap: false
+      sourceMap: true
+    }),
+    new webpack.DefinePlugin({
+      'process.env': { NODE_ENV: JSON.stringify(process.env.NODE_ENV) }
     }),
   ]
 }
