@@ -6,9 +6,12 @@ import style from './style.css'
 import classnames from 'classnames'
 
 const classes = classnames.bind(style)
-// import src from '../../assets/images/crossword.png'
 
 export default class App extends Component {
+  state = {
+    number: Math.random().toFixed(3)
+  }
+
   render () {
     const cx = classes(`vh-100 dt w-100 ${style.image}`)
     return (
@@ -16,7 +19,7 @@ export default class App extends Component {
         <div className='dtc v-mid tc white ph3 ph4-l'>
           <RoundImage />
           <WelcomeNote />
-          <RandomNumber number={Math.random().toFixed(3)}/>
+          <RandomNumber number={this.state.number}/>
         </div>
       </div>
     )
