@@ -1,48 +1,27 @@
-import { createDevTools } from 'redux-devtools'
-import LogMonitor from 'redux-devtools-log-monitor'
-import DockMonitor from 'redux-devtools-dock-monitor'
-
+import './reactotron.config.js'
 import React, { Component } from 'react'
 import { render } from 'react-dom'
 import { AppContainer } from 'react-hot-loader'
-import { createStore, combineReducers } from 'redux'
-import { browserHistory } from 'react-router'
-import { syncHistoryWithStore, routerReducer } from 'react-router-redux'
-
-// import * as reducers from './reducers'
 import Root from './Root'
+import { syncHistoryWithStore } from 'react-router-redux'
+import { browserHistory } from 'react-router'
+import createStore from './redux/store'
 
-import Reactotron from 'reactotron-react-js'
-
-Reactotron
-  .configure() // we can use plugins here -- more on this later
-  .connect() // let's connect!
-
-const reducer = combineReducers({
-  routing: routerReducer
-})
-
-const rootEl = document.getElementById('root')
-
-const store = createStore(reducer)
-
+const store = createStore()
 const history = syncHistoryWithStore(browserHistory, store)
 
-render(
+const rootEl = document.getElementById('root')
+const renderApp = () => render(
   <AppContainer>
-    <Root store={store} history={history}/>
+    <Root store={store} history={history} />
   </AppContainer>,
   rootEl
 )
+renderApp()
 
 if (module.hot) {
-  module.hot.accept('./Root', () => {
-    const Container = require('./Root').default
-    render(
-      <AppContainer>
-        <Container store={store} history={history}/>
-      </AppContainer>,
-      rootEl
-    )
-  })
+  module.hot.accept('./Root', renderApp)
+  module.hot.accept('./redux/rootReducer', () => {
+      store.replaceReducer(rootReducer);
+  });
 }
