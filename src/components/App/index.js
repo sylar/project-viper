@@ -14,7 +14,7 @@ const renderMessage = value => {
     return (<h2 className='black-60'>Press the button!</h2>)
   }
 
-  return (<h2 className='black-60'>Awesome! Now check Reactotron to see the logs!<br/> And press again 😜</h2>)
+  return (<h2 className='black-60'>Awesome! Now check Reactotron and press again 😜</h2>)
 }
 
 const App = props => {
@@ -27,7 +27,7 @@ const App = props => {
         <RoundImage />
         <WelcomeNote />
         <RandomNumber number={value || 0}/>
-        <button onClick={ handleClick }>Press Me!</button>
+        <button className='f6 link dim br2 ba ph3 pv2 mb2 dib dark-gray bg-transparent ma3 pointer' onClick={ handleClick }>Press Me!</button>
         { renderMessage(value) }
       </div>
     </div>
