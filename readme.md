@@ -3,6 +3,11 @@
 This is a seed for `React` projects that uses most of the bleeding edge tools and techniques.
 The seed follows the concept of tree shaking with the help of webpack2 and babel6.
 
+# ⚠️ Caveat
+
+Always get the latest release... This readme is outdated. `master` branch will always be functional, but I can't guarantee the readme will be with each push. Until further notice, check the `Realeases` page, it will relevant up2date info 😊.
+
+
 ## Prerequisites.
 
 I recommend using `yarn` but the classic `npm` will do just fine.
