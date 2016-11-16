@@ -96,7 +96,6 @@ module.exports = {
       filename: 'js/vendor.bundle.js',
     }),
     new LodashModuleReplacementPlugin(),
-    new webpack.optimize.DedupePlugin(),
     new webpack.optimize.UglifyJsPlugin({
       minimize: true,
       compressor: {
