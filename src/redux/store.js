@@ -1,16 +1,28 @@
-import createLogger from 'redux-logger'
-import { createStore, applyMiddleware } from 'redux'
+import { createStore, applyMiddleware, compose } from 'redux'
+import thunk from 'redux-thunk'
 import rootReducer from './rootReducer'
 
-const logger = createLogger({
-  predicate: process.env.NODE_ENV !== 'production'
-})
+const middlewares = [thunk]
+
+if (process.env.NODE_ENV === 'development') {
+  const createLogger = require('redux-logger')
+  const logger = createLogger({
+    predicate: (a, b) => true,
+    collapsed: (a, b) => true
+  })
+  middlewares.push(logger)
+}
+
+const createTheStore =
+  process.env.NODE_ENV === 'development'
+  ? console.tron.createStore
+  : createStore
 
 export default () => {
-  const middleware = applyMiddleware(logger)
-  const store = process.env.NODE_ENV === 'production'
-    ? createStore(rootReducer, middleware)
-    : console.tron.createStore(rootReducer, middleware)
+  const store = createTheStore(
+    rootReducer,
+    compose(applyMiddleware(...middlewares))
+  )
 
   return store
 }

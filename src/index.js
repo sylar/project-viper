@@ -17,11 +17,12 @@ const renderApp = () => render(
   </AppContainer>,
   rootEl
 )
-renderApp()
 
-if (module.hot) {
-  module.hot.accept('./Root', renderApp)
-  module.hot.accept('./redux/rootReducer', () => {
-      store.replaceReducer(rootReducer);
-  });
+if (process.env.NODE_ENV == 'development' && module.hot) {
+  module.hot.accept(['./Root', './redux/rootReducer'], () => {
+    store.replaceReducer(require('././redux/rootReducer').default);
+    renderApp()
+  })
 }
+
+renderApp()

@@ -11,7 +11,7 @@ const Root = ({ store, history }) => (
 
 export default Root
 
-if (process.env.NODE_ENV !== 'production') {
+if (process.env.NODE_ENV === 'development') {
   require('./components/RoundImage')
   require('./containers/App')
   require('./components/WelcomeNote')
