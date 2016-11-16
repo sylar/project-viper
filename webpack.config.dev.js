@@ -1,7 +1,6 @@
 const webpack = require('webpack')
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-const DashboardPlugin = require('webpack-dashboard/plugin')
 const LodashModuleReplacementPlugin = require('lodash-webpack-plugin')
 const autoprefixer = require('autoprefixer')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
@@ -14,8 +13,7 @@ module.exports = {
   entry: {
     app: [
       'react-hot-loader/patch',
-      'webpack-dev-server/client?http://localhost:3000',
-      'webpack/hot/only-dev-server',
+      'webpack-hot-middleware/client?http://localhost:3000&reload=true',
       './index.js'
     ]
   },
@@ -75,8 +73,8 @@ module.exports = {
       filename: 'index.html'
     }),
     new webpack.NamedModulesPlugin(),
-    new DashboardPlugin(),
     new webpack.HotModuleReplacementPlugin(),
-    new LodashModuleReplacementPlugin()
+    new LodashModuleReplacementPlugin(),
+    new webpack.NoErrorsPlugin()
   ]
 }
