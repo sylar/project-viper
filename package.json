@@ -6,9 +6,10 @@
   "author": "Andrei Constantinescu <andrei@constantinescu.io>",
   "license": "MIT",
   "scripts": {
-    "start": "webpack-dashboard -- node server.js",
+    "dev": "export NODE_ENV=development; webpack-dashboard -- node server/",
     "build": "export NODE_ENV=production; webpack --config webpack.config.prod.js",
-    "stats": "export NODE_ENV=development; webpack --config webpack.config.prod.js --profile --json > stats.json"
+    "start": "npm run build; node server/",
+    "serve": "nf start"
   },
   "devDependencies": {
     "autoprefixer": "^6.5.2",
@@ -46,6 +47,8 @@
     "babel-eslint": "^7.1.0",
     "babel-runtime": "^6.18.0",
     "classnames": "^2.2.5",
+    "compression": "^1.6.2",
+    "foreman": "^2.0.0",
     "lodash": "^4.16.6",
     "react": "^15.4.0-rc.4",
     "react-dom": "^15.4.0-rc.4",
