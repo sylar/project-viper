@@ -1,13 +1,10 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
-import RandomNumber from '../RandomNumber'
-import RoundImage from '../RoundImage'
-import WelcomeNote from '../WelcomeNote'
-import style from './style.css'
-import classnames from 'classnames'
+import RandomNumber from '../../components/RandomNumber'
+import RoundImage from '../../components/RoundImage'
+import WelcomeNote from '../../components/WelcomeNote'
 import { Actions as GenerateNumberActions } from '../../redux/RandomNumber.redux'
 
-const classes = classnames.bind(style)
 
 const renderMessage = value => {
   if (!value) {
@@ -20,9 +17,8 @@ const renderMessage = value => {
 const App = props => {
   const { value, handleClick} = props
 
-  const cx = classes(`vh-100 dt w-100 ${style.image}`)
   return (
-    <div className={cx}>
+    <div className='dt w-100'>
       <div className='dtc v-mid tc white ph3 ph4-l'>
         <RoundImage />
         <WelcomeNote />

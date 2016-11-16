@@ -1,11 +1,13 @@
 import referenciallyEqualRootRoute from './referenciallyEqualRootRoute'
+import MainLayout from './components/MainLayout'
 
 export default Object.assign(referenciallyEqualRootRoute, {
   path: '/',
+  component: MainLayout,
   childRoutes: [
-    {
-      getIndexRoute (location, cb) {
-        require.ensure([], require => cb(null, { component: require('./components/App').default }))
+      {
+        getIndexRoute (location, cb) {
+          require.ensure([], require => cb(null, { component: require('./containers/App').default }))
       },
       getChildRoutes (location, cb) {
         require.ensure([], require => {

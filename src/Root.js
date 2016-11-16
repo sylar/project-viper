@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { Provider } from 'react-redux'
 import { Router, Route, IndexRoute } from 'react-router'
 import routes from './routes'
-import { App, WelcomeNote, Header, RoundImage } from './components'
 
 const Root = ({ store, history }) => (
     <Provider store={store}>
@@ -14,6 +13,7 @@ export default Root
 
 if (process.env.NODE_ENV !== 'production') {
   require('./components/RoundImage')
-  require('./components/App')
+  require('./containers/App')
   require('./components/WelcomeNote')
+  require('./components/MainLayout')
 }

@@ -1,4 +1,4 @@
-export App from './App'
+export App from '../containers/App'
 export RoundImage from './RoundImage'
 export WelcomeNote from './WelcomeNote'
-export Header from './Header'
+export MainLayout from './MainLayout'
