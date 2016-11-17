@@ -5,34 +5,41 @@ The seed follows the concept of tree shaking with the help of webpack2 and babel
 
 # ⚠️ Caveat
 
-Always get the latest release... This readme is outdated. `master` branch will always be functional, but I can't guarantee the readme will be with each push. Until further notice, check the `Realeases` page, it will relevant up2date info 😊.
+Always get the latest release... This readme is outdated. `master` branch will always be functional, but I can't guarantee the readme will be with each push. Until further notice, check the [Realeases](https://github.com/andreiconstantinescu/project-viper/releases) page, it will have relevant up2date info 😊.
 
 
 ## Prerequisites.
 
-I recommend using `yarn` but the classic `npm` will do just fine.
+I recommend using `yarn`, but the classic `npm` will do just fine.
+[Reactotron](https://github.com/reactotron/reactotron), in any flavour, must be running before the dev server is ran, check the [instructions](https://github.com/reactotron/reactotron/blob/master/docs/installing.md).
 
 ## How to use.
 
-clone the project somewhere.
+1.  clone the project somewhere.
 ```
-> git clone <this_project>
+> git clone https://github.com/andreiconstantinescu/project-viper
 ```
 
-move to the previously cloned location and install dependencies.
+2.  move to the previously cloned location and install dependencies.
 ```
 > cd project-viper
 > yarn
 ```
 
-start the dev server
+3.  start reactotron cli (if you have installed it).
 ```
-> yarn start
+> reactotron
+```
+or open the App.
+
+4.  start the dev server.
+```
+> yarn run dev
 ```
 
-open `localhost:3000` in your browser.
+5. open `localhost:3000` in your browser.
 
-start creating.
+6. Head over to an editor and start hacking.
 
 ## Project structure.
 ```
@@ -42,25 +49,35 @@ start creating.
 ├── readme.md
 ├── server.js
 ├── src
+│   ├── Root.js
 │   ├── assets
 │   │   ├── images
 │   │   │   ├── congruent_outline.png
 │   │   │   └── crossword.png
 │   │   └── template.html
 │   ├── components
-│   │   ├── App
+│   │   ├── MainLayout
 │   │   │   ├── index.js
 │   │   │   └── style.css
 │   │   ├── RandomNumber
 │   │   │   ├── index.js
 │   │   │   └── style.css
-│   │   ├── Root.js
 │   │   ├── RoundImage
 │   │   │   └── index.js
-│   │   └── WelcomeNote
+│   │   ├── WelcomeNote
+│   │   │   └── index.js
+│   │   └── index.js
+│   ├── containers
+│   │   └── App
 │   │       └── index.js
-│   └── index.js
-├── stats.json
+│   ├── index.js
+│   ├── reactotron.config.js
+│   ├── redux
+│   │   ├── RandomNumber.redux.js
+│   │   ├── rootReducer.js
+│   │   └── store.js
+│   ├── referenciallyEqualRootRoute.js
+│   └── routes.js
 ├── webpack.config.dev.js
 ├── webpack.config.prod.js
 └── yarn.lock
@@ -71,8 +88,21 @@ This project uses tachyons, being the only global classes available throughout t
 
 Contents of the `assets` folder are linked on dev env and optimised when building for production.
 
+This seed uses `Redux` for state management along with the `HMR` for reducers.
+
 # Run for production.
 
+Build the assets and serve them locally.
+```
+> yarn start
+```
+
+Build the assets and serve them in a prodlike env, using [node-foreman](https://github.com/strongloop/node-foreman).
+```
+> yarn run serve
+```
+
+Just build.
 ```
 > yarn run build
 ```
@@ -80,17 +110,25 @@ Contents of the `assets` folder are linked on dev env and optimised when buildin
 The `static` folder will appear in the project root having the following structure.
 
 ```
-static
+static/
 ├── assets
 │   └── images
-│       └── background.png
+│       ├── congruent_outline.png
+│       └── crossword.png
 ├── css
 │   ├── style.css
+│   ├── style.css.map
 │   └── tachyons.css
 ├── index.html
 └── js
-├── main.js
-└── vendor.bundle.js
+    ├── 0.js
+    ├── 0.js.map
+    ├── 1.js
+    ├── 1.js.map
+    ├── main.js
+    ├── main.js.map
+    ├── vendor.bundle.js
+    └── vendor.bundle.js.map
 ```
 
 ## Seen a problem?
@@ -103,14 +141,20 @@ If you find a better way to do something or simply want to add a new feature, ju
 * hot module realoading (while maintaining the state).
 * webpack2.
 * webpack dashboard.
+* redux.
+* reactotron.
+* code splitting.
+* production ready.
+* react-router.
+
 
 ## TO DO.
-- [ ] Add redux.
+- [X] Add redux.
 - [ ] Discard unused css classes.
 - [ ] Testing.
 - [ ] SSR.
-- [ ] Improve Readme.
-- [ ] Add `serve` for production build testing.
+- [ ] Create wiki.
+- [X] Add `serve` for production build testing.
 - [ ] Create NPM package for auto-scaffold.
 
 ## License.
