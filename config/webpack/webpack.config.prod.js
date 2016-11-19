@@ -9,13 +9,13 @@ const ExtractTextPlugin = require("extract-text-webpack-plugin")
 
 module.exports = {
   devtool: 'cheap-module-source-map',
-  context: path.join(__dirname, './src'),
+  context: path.resolve('./client'),
   entry: {
     main: './index.js',
     vendor: ['react', 'classnames']
   },
   output: {
-    path: path.join(__dirname, './static'),
+    path: path.resolve('./public'),
     filename: 'js/[name].js'
   },
   module: {
@@ -28,8 +28,8 @@ module.exports = {
         test: /\.css$/,
         loader: ExtractTextPlugin.extract({
           fallbackLoader: 'style-loader',
-          loader: 'css-loader?minimize&discardUnused&modules&importLoaders=1&localIdentName=[hash:base64:3]!postcss-loader',
-          publicPath: '/'}),
+          loader: 'css-loader?minimize&modules&importLoaders=1&localIdentName=[hash:base64:5]!postcss-loader'
+        }),
       },
       {
         test: /\.(js|jsx)$/,
@@ -46,7 +46,7 @@ module.exports = {
           {
             loader: 'file-loader',
             options: {
-              name: '[path][name].[ext]'
+              name: '[path][hash:base64:5].[ext]'
             }
           },
           {
@@ -68,7 +68,7 @@ module.exports = {
   resolve: {
     extensions: ['.js', '.jsx', '.json'],
     modules: [
-      path.resolve('./src'),
+      path.resolve('./client'),
       'node_modules'
     ]
   },

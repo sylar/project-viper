@@ -3,7 +3,9 @@ import src from '../../assets/images/congruent_outline.png'
 
 const RoundImage = () => (
   <div className='pa4 tc'>
-    <img src={src} className='br-100 ba h5 w5 dib'/>
+    <img
+      src={src}
+      className='br-100 ba h5 w5 dib'/>
   </div>
 )
 

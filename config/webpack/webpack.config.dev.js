@@ -9,7 +9,7 @@ const nodeEnv = process.env.NODE_ENV || 'development'
 
 module.exports = {
   devtool: 'source-map',
-  context: path.join(__dirname, './src'),
+  context: path.resolve('./client'),
   entry: {
     app: [
       'react-hot-loader/patch',
@@ -18,7 +18,7 @@ module.exports = {
     ]
   },
   output: {
-    path: path.join(__dirname, './static'),
+    path: path.resolve('./public'),
     filename: 'js/[name].js',
     devtoolModuleFilenameTemplate: '/[absolute-resource-path]'
   },
@@ -58,7 +58,7 @@ module.exports = {
   resolve: {
     extensions: ['.js', '.jsx'],
     modules: [
-      path.resolve('./src'),
+      path.join(__dirname, '..', '..', './client'),
       'node_modules'
     ]
   },
