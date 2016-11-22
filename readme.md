@@ -102,10 +102,10 @@ Just build.
 > yarn run build
 ```
 
-The `static` folder will appear in the project root having the following structure.
+The `public` folder will appear in the project root having the following structure.
 
 ```
-static/
+public/
 ├── assets
 │   └── images
 │       ├── congruent_outline.png
@@ -151,6 +151,7 @@ If you find a better way to do something or simply want to add a new feature, ju
 - [ ] Create wiki.
 - [X] Add `serve` for production build testing.
 - [ ] Create NPM package for auto-scaffold.
+- [X] Reactotron API monitor.
 
 ## License.
 
