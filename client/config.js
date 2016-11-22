@@ -1,4 +1,4 @@
-const server = 'http://localhost:3000'
+const server = `http://localhost:${process.env.PORT || 3000}`
 
 export {
   server

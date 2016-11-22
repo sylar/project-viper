@@ -37,7 +37,7 @@ module.exports = {
         loader: 'babel-loader',
         query: {
           presets: [['es2015', { 'modules': false }], 'stage-0', 'react'],
-          plugins: ['lodash', 'transform-react-jsx-img-import']
+          plugins: ['transform-runtime','lodash', 'transform-react-jsx-img-import']
         }
       },
       {
@@ -109,7 +109,10 @@ module.exports = {
       sourceMap: true
     }),
     new webpack.DefinePlugin({
-      'process.env': { NODE_ENV: JSON.stringify(process.env.NODE_ENV) }
+      'process.env': {
+        NODE_ENV: JSON.stringify(process.env.NODE_ENV),
+        PORT: JSON.stringify(process.env.PORT),
+      }
     }),
   ]
 }

@@ -38,7 +38,11 @@ const mapStateToProps = state => ({...state })
 const mapDispatchToProps = dispatch => ({
   handleClick: () => {
     dispatch(GenerateNumberActions.generate())
-    dispatch(SetMessageActions.setMessage('Awesome! Now check Reactotron and press again 😜'))
+    dispatch(SetMessageActions.setMessage(
+      process.env.NODE_ENV !== 'production'
+      ? 'Awesome! Now check Reactotron and press again 😜'
+      : 'Aweomse! Generate another number!'
+    ))
   },
   async getFoo (param) { dispatch(SetMessageActions.setMessage((await foo(param)).data)) }
 })
