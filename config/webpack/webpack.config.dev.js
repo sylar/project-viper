@@ -46,7 +46,7 @@ module.exports = {
         loader: 'babel-loader',
         query: {
           presets: [['es2015', { 'modules': false }], 'stage-0', 'react'],
-          plugins: ['react-hot-loader/babel', 'lodash', 'transform-react-jsx-img-import']
+          plugins: ['transform-runtime','react-hot-loader/babel', 'lodash', 'transform-react-jsx-img-import']
         }
       },
       {
