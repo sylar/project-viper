@@ -42,12 +42,12 @@ or open the App.
 ## Project structure.
 ```
 .
-├── package.json
-├── postcss.config.js
-├── readme.md
-├── server.js
-├── src
+├── client
 │   ├── Root.js
+│   ├── api
+│   │   ├── common.js
+│   │   ├── foo.js
+│   │   └── index.js
 │   ├── assets
 │   │   ├── images
 │   │   │   ├── congruent_outline.png
@@ -65,20 +65,39 @@ or open the App.
 │   │   ├── WelcomeNote
 │   │   │   └── index.js
 │   │   └── index.js
+│   ├── config.js
 │   ├── containers
 │   │   └── App
 │   │       └── index.js
 │   ├── index.js
 │   ├── reactotron.config.js
 │   ├── redux
+│   │   ├── Message.redux.js
 │   │   ├── RandomNumber.redux.js
+│   │   ├── StarWars.redux.js
+│   │   ├── common.redux.js
 │   │   ├── rootReducer.js
 │   │   └── store.js
 │   ├── referenciallyEqualRootRoute.js
-│   └── routes.js
-├── webpack.config.dev.js
-├── webpack.config.prod.js
-└── yarn.lock
+│   ├── routes.js
+│   └── sagas
+│       ├── actions.js
+│       ├── index.js
+│       └── starWarsSaga.js
+├── config
+│   ├── webpack
+│   │   ├── webpack.config.dev.js
+│   │   └── webpack.config.prod.js
+│   └── webpack.config.js
+├── license
+├── package.json
+├── postcss.config.js
+├── readme.md
+└── server
+    ├── index.js
+    └── routers
+        ├── foo.js
+        └── index.js
 ```
 Each component can have it's own `.css` file that is required in the component's exported `.js` file. Because of using `css modules` the style is scoped in the component and there are no global selectors exposed.
 
@@ -111,8 +130,8 @@ The `public` folder will appear in the project root having the following structu
 public/
 ├── assets
 │   └── images
-│       ├── congruent_outline.png
-│       └── crossword.png
+│       ├── 1Zaf1.png
+│       └── TQJIR.png
 ├── css
 │   ├── style.css
 │   ├── style.css.map
@@ -127,6 +146,7 @@ public/
     ├── main.js.map
     ├── vendor.bundle.js
     └── vendor.bundle.js.map
+
 ```
 
 ## Seen a problem?
@@ -144,6 +164,7 @@ If you find a better way to do something or simply want to add a new feature, ju
 * code splitting.
 * production ready.
 * react-router.
+* redux-saga.
 
 
 ## TO DO.
@@ -155,6 +176,7 @@ If you find a better way to do something or simply want to add a new feature, ju
 - [X] Add `serve` for production build testing.
 - [ ] Create NPM package for auto-scaffold.
 - [X] Reactotron API monitor.
+- [X] Add redux-saga.
 
 ## License.
 
