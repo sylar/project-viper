@@ -1,5 +1,6 @@
-import foo from './foo'
+import { getTest, apiGetCharacter } from './foo'
 
 export {
-  foo
+  getTest,
+  apiGetCharacter
 }

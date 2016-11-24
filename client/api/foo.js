@@ -1,7 +1,9 @@
 import api from './common'
 
-async function getTest (name) {
+export async function getTest (name) {
   return await api.get(`/foo/${name}`)
 }
 
-export default getTest
+export async function apiGetCharacter (number) {
+  return await api.get(`/foo/character/${number}`)
+}
