@@ -56,8 +56,9 @@ module.exports = {
     ]
   },
   resolve: {
-    extensions: ['.js', '.jsx'],
+    extensions: ['.js', '.jsx', '.json', '.css'],
     modules: [
+      '.',
       path.join(__dirname, '..', '..', './client'),
       'node_modules'
     ]
