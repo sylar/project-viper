@@ -69,6 +69,7 @@ module.exports = {
     extensions: ['.js', '.jsx', '.json', '.css'],
     modules: [
       '.',
+      path.join(__dirname, '..', '..', './client', 'assets'),
       path.resolve('./client'),
       'node_modules'
     ]
