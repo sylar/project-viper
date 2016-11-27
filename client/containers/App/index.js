@@ -1,17 +1,17 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import RandomNumber from '../../components/RandomNumber'
-import RoundImage from '../../components/RoundImage'
-import WelcomeNote from '../../components/WelcomeNote'
-import { Actions as GenerateNumberActions } from '../../redux/RandomNumber.redux'
-import { Actions as SetMessageActions } from '../../redux/Message.redux'
-import { Types as StarWarsTypes } from '../../redux/StarWars.redux'
-import { starWars } from '../../sagas/actions'
+import RandomNumber from 'components/RandomNumber'
+import RoundImage from 'components/RoundImage'
+import WelcomeNote from 'components/WelcomeNote'
+import { Actions as GenerateNumberActions } from 'redux/RandomNumber.redux'
+import { Actions as SetMessageActions } from 'redux/Message.redux'
+import { Types as StarWarsTypes } from 'redux/StarWars.redux'
+import { starWars } from 'sagas/actions'
 import { random } from 'lodash'
 import {
   getTest,
   GetCharacter
-} from '../../api'
+} from 'api'
 
 const App = props => {
   const { message, randomNumber, handleClick, getFoo, handleSW } = props

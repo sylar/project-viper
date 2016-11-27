@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import src from '../../assets/images/congruent_outline.png'
+import src from 'images/congruent_outline.png'
 
 const RoundImage = () => (
   <div className='pa4 tc'>

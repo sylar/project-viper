@@ -1,11 +1,11 @@
-import './reactotron.config.js'
+import 'reactotron.config.js'
 import React, { Component } from 'react'
 import { render } from 'react-dom'
 import { AppContainer } from 'react-hot-loader'
-import Root from './Root'
+import Root from 'Root'
 import { syncHistoryWithStore } from 'react-router-redux'
 import { browserHistory } from 'react-router'
-import createStore from './redux/store'
+import createStore from 'redux/store'
 
 const store = createStore()
 const history = syncHistoryWithStore(browserHistory, store)
@@ -19,8 +19,9 @@ const renderApp = () => render(
 )
 
 if (process.env.NODE_ENV == 'development' && module.hot) {
-  module.hot.accept(['./Root', './redux/rootReducer'], () => {
-    store.replaceReducer(require('././redux/rootReducer').default);
+  module.hot.accept(['Root', 'redux/rootReducer'], () => {
+    console.log('this is 🔥');
+    store.replaceReducer(require('redux/rootReducer').default);
     renderApp()
   })
 }

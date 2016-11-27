@@ -1,16 +1,16 @@
 import { takeLatest, channel } from 'redux-saga'
 import { take, fork, call, put } from 'redux-saga/effects'
-import { apiGetCharacter } from '../api'
-import { getActionName } from '../redux/common.redux'
+import { apiGetCharacter } from 'api'
+import { getActionName } from 'redux/common.redux'
 import { pick } from 'lodash'
 import {
   Actions as starWarsActions,
   Types as starWarsTypes
-} from '../redux/StarWars.redux'
+} from 'redux/StarWars.redux'
 import {
   Actions as messageActions,
   Types as messageTypes
-} from '../redux/Message.redux'
+} from 'redux/Message.redux'
 
 const retrieveData = function* ({ payload }, infoChannel) {
   const { data } = yield call(apiGetCharacter, payload)

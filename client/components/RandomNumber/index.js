@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import classes from 'classnames/bind'
-import styles from './style.css'
+import styles from 'style'
 
 const cx = classes.bind(styles)
 const style = cx(`${styles.title} mw5 mw7-ns center bg-light-gray pa3 ph5-ns black-70 flex w-100 items-center content-center flex-wrap`)
