@@ -56,7 +56,7 @@ const mapDispatchToProps = dispatch => ({
     ))
   },
   async getFoo (param) { dispatch(SetMessageActions.setMessage((await getTest(param)).data)) },
-  async handleSW (id = random(87)) {
+  async handleSW (id = random(1, 87)) {
     dispatch({
       type: starWars,
       payload: id
