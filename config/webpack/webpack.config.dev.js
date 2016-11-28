@@ -1,7 +1,6 @@
 const webpack = require('webpack')
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-const LodashModuleReplacementPlugin = require('lodash-webpack-plugin')
 const autoprefixer = require('autoprefixer')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 
@@ -46,7 +45,7 @@ module.exports = {
         loader: 'babel-loader',
         query: {
           presets: [['es2015', { 'modules': false }], 'stage-0', 'react'],
-          plugins: ['transform-runtime','react-hot-loader/babel', 'lodash', 'transform-react-jsx-img-import']
+          plugins: ['transform-runtime','react-hot-loader/babel', 'transform-react-jsx-img-import']
         }
       },
       {
@@ -76,7 +75,6 @@ module.exports = {
     }),
     new webpack.NamedModulesPlugin(),
     new webpack.HotModuleReplacementPlugin(),
-    new LodashModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin()
   ]
 }

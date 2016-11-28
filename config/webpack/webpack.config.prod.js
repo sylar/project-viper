@@ -37,7 +37,7 @@ module.exports = {
         loader: 'babel-loader',
         query: {
           presets: [['es2015', { 'modules': false }], 'stage-0', 'react'],
-          plugins: ['transform-runtime','lodash', 'transform-react-jsx-img-import']
+          plugins: ['transform-runtime', 'transform-react-jsx-img-import']
         }
       },
       {
@@ -97,7 +97,12 @@ module.exports = {
       minChunks: Infinity,
       filename: 'js/vendor.bundle.js',
     }),
-    new LodashModuleReplacementPlugin(),
+    new LodashModuleReplacementPlugin({
+      shorthands: true,
+      collections: true,
+      flattening: true,
+      paths: true
+    }),
     new webpack.optimize.UglifyJsPlugin({
       minimize: true,
       compressor: {
