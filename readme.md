@@ -1,10 +1,7 @@
 # Project viper.
 
 This is a seed for `React` projects that uses most of the bleeding edge tools and techniques.
-The seed follows the concept of tree shaking with the help of webpack2 and babel6.
-
-## ⚠️ Caveat
-At the moment of writing, `image-webpack-loader` is not compatible with `yarn 0.17`, therefore use `yarn 0.16` or `npm` for production builds.
+This seed offers the opportunity to see the latest packages and integration of various tools and techniques that revolve around the React and Webpack ecosystems.
 
 ## Prerequisites.
 
@@ -14,8 +11,13 @@ I recommend using `yarn`, but the classic `npm` will do just fine.
 ## How to use.
 
 1.  clone the project somewhere.
+  ```
+  > git clone https://github.com/andreiconstantinescu/project-viper
+  ```
+
+2. Make it yours.
 ```
-> git clone https://github.com/andreiconstantinescu/project-viper
+> rm -rf .git && git init
 ```
 
 2.  move to the previously cloned location and install dependencies.
