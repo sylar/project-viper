@@ -12,10 +12,11 @@ module.exports = {
   context: path.resolve('./client'),
   entry: {
     main: './index.js',
-    vendor: ['react', 'classnames']
+    vendor: ['react', 'classnames', 'redux', 'redux-saga', 'react-router-dom']
   },
   output: {
     path: path.resolve('./public'),
+    publicPath: '/',
     filename: 'js/[name].js'
   },
   module: {
@@ -27,7 +28,7 @@ module.exports = {
       {
         test: /\.css$/,
         loader: ExtractTextPlugin.extract({
-          fallbackLoader: 'style-loader',
+          fallback: 'style-loader',
           loader: 'css-loader?minimize&modules&importLoaders=1&localIdentName=[hash:base64:5]!postcss-loader'
         }),
       },
@@ -37,7 +38,7 @@ module.exports = {
         loader: 'babel-loader',
         query: {
           presets: [['es2015', { 'modules': false }], 'stage-0', 'react'],
-          plugins: ['transform-runtime', 'transform-react-jsx-img-import']
+          plugins: ["transform-runtime", 'transform-react-jsx-img-import']
         }
       },
       {
@@ -52,12 +53,16 @@ module.exports = {
           {
             loader: 'image-webpack-loader',
             options: {
-              progressive: true,
-              optimizationLevel: 7,
-              interlaced: false,
-              pngquant: {
-                quality: '65-90',
-                speed: 4
+              query: {
+                mozjpeg: {
+                  progressive: true,
+                },
+                gifsicle: {
+                  interlaced: true,
+                },
+                optipng: {
+                  optimizationLevel: 7,
+                }
               }
             }
           }
@@ -73,6 +78,9 @@ module.exports = {
       path.resolve('./client'),
       'node_modules'
     ]
+  },
+  performance: {
+    hints: false
   },
   plugins: [
     new CopyWebpackPlugin([{ from: require.resolve('tachyons/css/tachyons.min.css'), to: 'css/tachyons.css'}]),

@@ -18,6 +18,7 @@ module.exports = {
   },
   output: {
     path: path.resolve('./public'),
+    publicPath: '/',
     filename: 'js/[name].js',
     devtoolModuleFilenameTemplate: '/[absolute-resource-path]'
   },
@@ -71,10 +72,11 @@ module.exports = {
     new HtmlWebpackPlugin({
       title: 'Dev App',
       template: 'assets/template.html',
-      filename: 'index.html'
+      filename: 'index.html',
+      inject: true
     }),
     new webpack.NamedModulesPlugin(),
     new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoErrorsPlugin()
+    new webpack.NoEmitOnErrorsPlugin()
   ]
 }
