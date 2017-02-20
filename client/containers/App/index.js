@@ -2,7 +2,6 @@ import React from 'react'
 import { connect } from 'react-redux'
 import RandomNumber from 'components/RandomNumber'
 import RoundImage from 'components/RoundImage'
-import WelcomeNote from 'components/WelcomeNote'
 import { Actions as GenerateNumberActions } from 'redux/RandomNumber.redux'
 import { Actions as SetMessageActions } from 'redux/Message.redux'
 import { Types as StarWarsTypes } from 'redux/StarWars.redux'
@@ -19,7 +18,6 @@ const App = props => {
     <div className='dt w-100'>
       <div className='dtc v-mid tc white ph3 ph4-l'>
         <RoundImage />
-        <WelcomeNote />
         <RandomNumber number={randomNumber.value || 0}/>
         <button
           className='f6 link dim br2 ba ph3 pv2 mb2 dib dark-gray bg-transparent ma3 pointer'

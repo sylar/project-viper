@@ -1,12 +1,7 @@
-import React, { Component } from 'react'
-import src from 'images/congruent_outline.png'
+import asyncComponent from 'components/AsyncComponent';
 
-const RoundImage = () => (
-  <div className='pa4 tc'>
-    <img
-      src={src}
-      className='br-100 ba h5 w5 dib'/>
-  </div>
-)
+const AsyncDashboard = asyncComponent(() =>
+  import('./RoundImage').then(module => module.default)
+);
 
-export default RoundImage
+export default AsyncDashboard;

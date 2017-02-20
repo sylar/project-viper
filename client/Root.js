@@ -1,18 +1,12 @@
 import React, { Component } from 'react'
 import { Provider } from 'react-redux'
-import { Router, Route, IndexRoute } from 'react-router'
-import routes from 'routes'
+import { BrowserRouter as Router, Route, IndexRoute } from 'react-router-dom'
+import Routes from 'routes'
 
-const Root = ({ store, history }) => (
+const Root = ({ store }) => (
     <Provider store={store}>
-      <Router history={history} routes={routes} />
+      <Routes />
     </Provider>
   )
+  
 export default Root
-
-if (process.env.NODE_ENV === 'development') {
-  require('components/RoundImage')
-  require('containers/App')
-  require('components/WelcomeNote')
-  require('components/MainLayout')
-}

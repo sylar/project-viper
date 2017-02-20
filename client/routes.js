@@ -1,28 +1,21 @@
-import referenciallyEqualRootRoute from 'referenciallyEqualRootRoute'
-import MainLayout from 'components/MainLayout'
+import React from 'react';
+import { BrowserRouter, Route, Switch } from 'react-router-dom'
+import App from 'containers/App'
+import RoundImage from 'components/RoundImage'
+import WelcomeNote from 'components/WelcomeNote'
+import Header from 'components/Header'
 
-export default Object.assign(referenciallyEqualRootRoute, {
-  path: '/',
-  component: MainLayout,
-  childRoutes: [
-      {
-        getIndexRoute (location, cb) {
-          require.ensure([], require => cb(null, { component: require('containers/App').default }))
-      },
-      getChildRoutes (location, cb) {
-        require.ensure([], require => {
-          cb(null, [
-            {
-              path: 'image',
-              component: require('components/RoundImage').default
-            },
-            {
-              path: 'welcome',
-              component: require('components/WelcomeNote').default
-            }
-          ])
-        })
-      }
-    }
-  ]
-})
+const Routes = () => (
+    <BrowserRouter>
+      <div>
+        <Header />
+        <Switch>
+          <Route exact path='/welcome' component={WelcomeNote} />
+          <Route exact path='/image' component={RoundImage} />
+          <Route component={App} />
+        </Switch>
+      </div>
+    </BrowserRouter>
+);
+
+export default Routes

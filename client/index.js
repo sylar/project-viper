@@ -3,17 +3,14 @@ import React, { Component } from 'react'
 import { render } from 'react-dom'
 import { AppContainer } from 'react-hot-loader'
 import Root from 'Root'
-import { syncHistoryWithStore } from 'react-router-redux'
-import { browserHistory } from 'react-router'
 import createStore from 'redux/store'
 
 const store = createStore()
-const history = syncHistoryWithStore(browserHistory, store)
 
 const rootEl = document.getElementById('root')
 const renderApp = () => render(
   <AppContainer>
-    <Root store={store} history={history} />
+    <Root store={store}/>
   </AppContainer>,
   rootEl
 )
@@ -25,5 +22,4 @@ if (process.env.NODE_ENV == 'development' && module.hot) {
     renderApp()
   })
 }
-
 renderApp()

@@ -1,8 +1,4 @@
 const webpack = require('webpack')
-const webpackDevMiddleware = require('webpack-dev-middleware')
-const webpackHotMiddleware = require('webpack-hot-middleware')
-const DashboardPlugin = require('webpack-dashboard/plugin')
-const proxy =  require('proxy-middleware')
 const express = require('express')
 const path = require('path')
 const url = require('url')
@@ -10,8 +6,10 @@ const app = express()
 const PORT = process.env.PORT || 3000
 const { fooRouter } = require('./routers')
 const config = require('../config/webpack.config.js')
+const history =  require('connect-history-api-fallback')
 
 app.use('/foo', fooRouter)
+app.use(history())
 
 if (process.env.NODE_ENV !== 'development') {
   const compression = require('compression')
@@ -20,13 +18,12 @@ if (process.env.NODE_ENV !== 'development') {
   app.use(compression())
   app.use(express.static(publicDir))
 
-  app.get('*', (req, res) => {
-    res.sendFile(path.join(publicDir, 'index.html'));
-  });
 } else {
+  const webpackDevMiddleware = require('webpack-dev-middleware')
+  const webpackHotMiddleware = require('webpack-hot-middleware')
+  const DashboardPlugin = require('webpack-dashboard/plugin')
   const wdsConfig = {
-    noInfo: true,
-    publicPath: '/'
+    noInfo: true
   }
 
   const compiler = webpack(config)

@@ -20,6 +20,7 @@ if (process.env.NODE_ENV === 'development') {
 }
 
 const sagaMiddleware = createSagaMiddleware(...sagaAdditionalMiddlewares)
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const createTheStore =
   process.env.NODE_ENV === 'development'
@@ -31,7 +32,7 @@ middlewares.push(sagaMiddleware)
 export default () => {
   const store = createTheStore(
     rootReducer,
-    compose(applyMiddleware(...middlewares))
+    composeEnhancers(applyMiddleware(...middlewares)),
   )
 
   sagaMiddleware.run(rootSaga)
