@@ -16,26 +16,26 @@ I recommend using `yarn`, but the classic `npm` will do just fine.
   ```
 
 2. Make it yours.
-```
-> rm -rf .git && git init
-```
+  ```
+  > rm -rf .git && git init
+  ```
 
 2.  move to the previously cloned location and install dependencies.
-```
-> cd project-viper
-> yarn
-```
+  ```
+  > cd project-viper
+  > yarn
+  ```
 
 3.  start reactotron cli (if you have installed it).
-```
-> reactotron
-```
+  ```
+  > reactotron
+  ```
 or open the App.
 
 4.  start the dev server.
-```
-> yarn run dev
-```
+  ```
+  > yarn run dev
+  ```
 
 5. open `localhost:3000` in your browser.
 
