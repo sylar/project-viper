@@ -1,4 +1,4 @@
-import 'reactotron.config.js'
+// import 'reactotron.config.js'
 import React, { Component } from 'react'
 import { render } from 'react-dom'
 import { AppContainer } from 'react-hot-loader'
