@@ -7,20 +7,19 @@ const CopyWebpackPlugin = require('copy-webpack-plugin')
 const nodeEnv = process.env.NODE_ENV || 'development'
 
 module.exports = {
-  devtool: 'source-map',
+  devtool: 'eval',
   context: path.resolve('./client'),
   entry: {
     app: [
       'react-hot-loader/patch',
-      'webpack-hot-middleware/client?http://localhost:3000&reload=true',
+      'webpack-hot-middleware/client?reload=true',
       './index.js'
     ]
   },
   output: {
     path: path.resolve('./public'),
     publicPath: '/',
-    filename: 'js/[name].js',
-    devtoolModuleFilenameTemplate: '/[absolute-resource-path]'
+    filename: 'js/[name].js'
   },
   module: {
     loaders: [
