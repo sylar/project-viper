@@ -1,4 +1,4 @@
-if (process.env.NODE_ENV !== 'production') {
+if (process.env.NODE_ENV === 'development') {
   const Reactotron = require('reactotron-react-js').default
   const { trackGlobalErrors } = require('reactotron-react-js')
   const { reactotronRedux } = require('reactotron-redux')
