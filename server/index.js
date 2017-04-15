@@ -4,11 +4,12 @@ const path = require('path')
 const url = require('url')
 const app = express()
 const PORT = process.env.PORT || 3000
-const { fooRouter } = require('./routers')
+const { fooRouter, apiRouter } = require('./routers')
 const config = require('../config/webpack.config.js')
 const history =  require('connect-history-api-fallback')
 
 app.use('/foo', fooRouter)
+app.use('/api', apiRouter)
 app.use(history())
 
 if (process.env.NODE_ENV !== 'development') {
