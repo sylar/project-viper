@@ -1,5 +1,7 @@
 # Project viper.
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/andreiconstantinescu/project-viper.svg)](https://greenkeeper.io/)
+
 This is a seed for `React` projects that uses most of the bleeding edge tools and techniques.
 This seed offers the opportunity to see the latest packages and integration of various tools and techniques that revolve around the React and Webpack ecosystems.
 
